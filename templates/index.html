@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Acceptance Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>College Acceptance Checker</h1>
+    <form action="/result" method="post">
+        <label for="gpa">Enter your GPA:</label>
+        <input type="text" id="gpa" name="gpa" placeholder="e.g., 3.5" required>
+        <input type="submit" value="Check Acceptance">
+    </form>
+</body>
+</html>
