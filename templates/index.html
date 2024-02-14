@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>College Acceptance Checker</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 50px;
-        }
-        input[type="text"] {
-            padding: 10px;
-            font-size: 16px;
-        }
-        input[type="submit"] {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eli's College Planner</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>College Acceptance Checker</h1>
-    <form action="/result" method="post">
-        <label for="gpa">Enter your GPA:</label>
-        <input type="text" id="gpa" name="gpa" placeholder="e.g., 3.5" required>
-        <input type="submit" value="Check Acceptance">
-    </form>
+    <header class="bg-primary text-white text-center py-4">
+        <h1 class="display-4">Eli's College Planner</h1>
+    </header>
+    <div class="mt-4">
+        <p class="lead">I created this website to <br> help users find colleges <br> and their prices for my senior project!</p>
+    </div>
+    <section class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for colleges">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    <!-- Add more sections as needed -->
+    <!-- Include Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
