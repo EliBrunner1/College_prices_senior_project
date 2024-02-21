@@ -1,36 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eli's College Planner</title>
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>Eli's College Search Senior Project</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <header class="bg-primary text-white text-center py-4">
-        <h1 class="display-4">Eli's College Planner</h1>
-    </header>
-    <div class="mt-4">
-        <p class="lead">I created this website to <br> help users find colleges <br> and their prices for my senior project!</p>
-    </div>
-    <section class="container mt-4">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for colleges">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">Search</button>
-                    </div>
-                </div>
-            </div>
+    <div class="container mt-5">
+        <div class="jumbotron text-center bg-light">
+            <h1 class="display-4">Eli's College Cost planner</h1>
+            <p>Thousands of U.S. Colleges and there costs.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Get Started</a>
         </div>
-        
-    </section>
-    <!-- Add more sections as needed -->
-    <!-- Include Bootstrap JS (optional) -->
+        <img src="{{ url_for('static', filename='image.jpg') }}" alt="" class="img-fluid">
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
