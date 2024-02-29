@@ -32,8 +32,8 @@ data = response.json()
 # Extract relevant information (e.g., school names, tuition fees, etc.)
 for school in data['results']:
     school_name = school.get('school').get('name')
-    tuition_in_state = school.get('cost.tuition.in_state')
-    tuition_out_of_state = school.get('cost.tuition.out_of_state')
+    tuition_in_state = school.get('latest').get('cost').get('tuition').get('in_state')
+    tuition_out_of_state = school.get('latest').get('cost').get('tuition').get('out_of_state')
     
     print(f"School Name: {school_name}")
     print(f"Tuition (In-State): ${tuition_in_state}")
