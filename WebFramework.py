@@ -4,8 +4,9 @@ import requests
 app = Flask(__name__)
 
 @app.route('/')
-def index():
+def index(): 
     return render_template('index.html')
+
 
 # link to the next page.
 @app.route('/college_search')
@@ -18,4 +19,3 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 #test
-    
