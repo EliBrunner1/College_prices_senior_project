@@ -2,15 +2,13 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-# For handling API calls.
-import requests
+# For handling API calls. 
 from pprint import pprint
 # For user-friendly data file access.
 import os
 import shutil
 import requests
 
-# Your API key
 api_key = "HRnr80yWE4NsBtYUorM2hHu1EAhRYIIRJpqZ7eDa"
 
 # Base URL for the College Scorecard API
@@ -35,7 +33,7 @@ for school in data['results']:
     tuition_in_state = school.get('latest').get('cost').get('tuition').get('in_state')
     tuition_out_of_state = school.get('latest').get('cost').get('tuition').get('out_of_state')
     
-    print(f"School Name: {school_name}")
-    print(f"Tuition (In-State): ${tuition_in_state}")
-    print(f"Tuition (Out-of-State): ${tuition_out_of_state}\n")
+    print(f"{school_name},")
+    #print(f"Tuition (In-State): ${tuition_in_state}")
+    #print(f"Tuition (Out-of-State): ${tuition_out_of_state}\n")
 
