@@ -31,12 +31,17 @@ data = response.json()
 # Extract the names from the data
 
 for school in data['results']:
+    school_id = school.get('id')
     school_name = school.get('school').get('name')
     school_state = school.get('school').get('state')
+    school_city = school.get('school').get('city')
     instate_tution = school.get('latest').get('cost').get('tuition').get('in_state')
     outstate_tution = school.get('latest').get('cost').get('tuition').get('out_of_state')
 
+    
+print(school_id)
 print(school_name)
 print(school_state)
+print(school_city)
 print(instate_tution)
 print(outstate_tution)
