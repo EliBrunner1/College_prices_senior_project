@@ -1,11 +1,8 @@
 from flask import Flask, request, render_template, Blueprint
-from flask_sqlalchemy import SQLAlchemy
 from API_Call import CollegeSchoolFetcher
 import requests
 
-db = SQLAlchemy()
-
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')  # Set static path for images
 
 @app.route('/')
 def index():
@@ -19,7 +16,6 @@ def college_search():
         state = request.form.get("state")
         degree_levels = request.form.get("degree_levels")
         try:
-            # Assuming your API key is stored elsewhere (e.g., environment variable)
             colleges = CollegeSchoolFetcher("HRnr80yWE4NsBtYUorM2hHu1EAhRYIIRJpqZ7eDa").fetch_college_data(state, degree_levels)
             return render_template("search_results.html", colleges=colleges)
         except Exception as e:
