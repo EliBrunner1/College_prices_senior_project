@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>College Search Results</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
+    /* Additional custom styles (if needed) */
     body {
       font-family: Arial, sans-serif;
       margin: 2rem;
@@ -29,25 +33,35 @@
   </style>
 </head>
 <body>
+  <div class="container">
     {% if colleges %}
-  <h2>College Search Results</h2>
-  <ul>
-    {% for college in colleges %}
-      <li>
-        <h3>{{ college.school.name }}</h3>
-        <p>
-          {% if college.school.city and college.school.state %}
-            <span>Location: {{ college.school.city }}, {{ college.school.state }}</span><br>
-          {% endif %}
-          <b>In-State Tuition: $</b> {{ college.latest.cost.tuition.in_state }}<br>
-          <b>Out-of-State Tuition: $</b> {{ college.latest.cost.tuition.out_of_state }}
-        </p>
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No school found matching your search criteria.</p>
-{% endif %}
+      <h2 class="text-center">College Search Results</h2>
+      <ul>
+        {% for college in colleges %}
+          <li>
+            <h3>
+              <a href="https://www.google.com/search?q={{ college.school.name }}" target="_blank">
+                {{ college.school.name }}
+              </a>
+            </h3>
+            <p>
+              {% if college.school.city and college.school.state %}
+                <span>Location: {{ college.school.city }}, {{ college.school.state }}</span><br>
+              {% endif %}
+              <b>In-State Tuition: $</b> {{ college.latest.cost.tuition.in_state }} |
+              <b>Out-of-State Tuition: $</b> {{ college.latest.cost.tuition.out_of_state }}
+            </p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No school found matching your search criteria.</p>
+    {% endif %}
+  </div>
 
-  </body>
+  <!-- Include Bootstrap JS (optional) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>

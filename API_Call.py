@@ -12,7 +12,7 @@ db = SQLAlchemy()
 
 
 class CollegeSchoolFetcher:
-    def __init__(self, api_key):
+    def __init__(self, api_key,):
         self.api_key = api_key
         self.base_url = "https://api.data.gov/ed/collegescorecard/v1/schools?"
 
