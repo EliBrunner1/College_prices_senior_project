@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, Blueprint
 from API_Call import CollegeSchoolFetcher
 import requests
 
-app = Flask(__name__, static_url_path='/static')  # Set static path for images
+app = Flask(__name__, static_url_path='/static')
 
 @app.route('/')
 def index():
@@ -25,6 +25,8 @@ def college_search():
         return render_template("college_search.html")
 
 app.register_blueprint(college_search_bp)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

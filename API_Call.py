@@ -16,7 +16,7 @@ class CollegeSchoolFetcher:
         self.api_key = api_key
         self.base_url = "https://api.data.gov/ed/collegescorecard/v1/schools?"
 
-    def fetch_college_data(self, state='OR', degree_levels='1,2'):
+    def fetch_college_data(self, state='', degree_levels='1,2'):
         params = {
             'school.state': state,
             'school.degrees_awarded.predominant': degree_levels,
@@ -32,10 +32,8 @@ if __name__ == "__main__":
     api_key = "HRnr80yWE4NsBtYUorM2hHu1EAhRYIIRJpqZ7eDa"
     college_fetcher = CollegeSchoolFetcher(api_key)
 
-    # Fetch college data for Oregon (state code 'OR') with Associate's or Bachelor's degrees
     college_data = college_fetcher.fetch_college_data()
 
-    # Print some details for demonstration
     for school in college_data:
         school_id = school.get('id')
         school_name = school.get('school').get('name')

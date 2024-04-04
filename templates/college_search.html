@@ -1,27 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>College Search</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Search</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.3.6.0.min.js"></script>
 </head>
 <body>
-    <div class="container mt-3">
-        <h1>College Search</h1>
-        <form method="POST" class="mb-3">
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="state" class="form-label">State:</label>
-                    <input type="text" class="form-control" id="state" name="state" placeholder="Enter state abbreviation (OR, CA, etc.)">
-                </div>
-                <div class="col-md-6">
-                    <label for="degree_levels" class="form-label">Degree Levels (comma-separated):</label>
-                    <input type="text" class="form-control" id="degree_levels" name="degree_levels" placeholder="e.g., 1,2 (Associate's, Bachelor's)">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVFQWjxhNBM9TLωAqhAlLnR9Gd0vPjw9aMRcXg6n9PDVpD/SYzfw" crossorigin="anonymous"></script>
+  <div class="container mt-3">
+    <h1>College Search</h1>
+    <form method="POST" class="mb-3">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="state" class="form-label">State:</label>
+          <input type="search" class="form-control" id="state" name="state" list="stateOptions" placeholder="Enter state abbreviation (OR, CA, etc.)">
+          <datalist id="stateOptions">
+          </datalist>
+        </div>
+        <div class="col-md-6">
+          <label for="degree_levels" class="form-label">Degree Levels:</label>
+          <select class="form-control" id="degree_levels" name="degree_levels">
+            <option value="">Select a degree level</option>
+            <option value="1">1 (Associate's Degree)</option>
+            <option value="2">2 (Bachelor's Degree)</option>
+            <option value="3">3 (Master's Degree)</option>
+            <option value="4">4 (Ph.D. or other Doctoral Degree)</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <h2>Search Results</h2>
+    <script>
+      $(document).ready(function() {
+        const stateOptions = [
+          { value: "AL", label: "Alabama" },
+          { value: "AK", label: "Alaska" },
+          { value: "AZ", label: "Arizona" },
+          // ... Add all 50 states here
+        ];
+
+        stateOptions.forEach(option => {
+          const optionElement = document.createElement('option');
+          optionElement.value = option.value;
+          optionElement.label = option.label;
+          $('#stateOptions').append(optionElement);
+        });
+      });
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </div>
 </body>
 </html>
