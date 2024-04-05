@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>College Search</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://code.jquery.3.6.0.min.js"></script>
+  <link rel="stylesheet" href="styles.css">  <script src="https://code.jquery.3.6.0.min.js"></script>
 </head>
+
 <body>
   <div class="container mt-3">
-    <h1>College Search</h1>
+    <h1>College's</h1>
+    <a href="http://127.0.0.1:5000/" class="btn btn-primary">Home</a>
+
     <form method="POST" class="mb-3">
       <div class="row">
         <div class="col-md-6">
           <label for="state" class="form-label">State:</label>
-          <input type="search" class="form-control" id="state" name="state" list="stateOptions" placeholder="Enter state abbreviation (OR, CA, etc.)">
-          <datalist id="stateOptions">
-          </datalist>
+          <input type="text" class="form-control" id="state" name="state" placeholder="Enter state abbreviation">
+          <ul id="stateOptions" class="list-group" style="display: none;"> </ul>
         </div>
         <div class="col-md-6">
           <label for="degree_levels" class="form-label">Degree Levels:</label>
@@ -34,23 +37,146 @@
 
     <h2>Search Results</h2>
     <script>
-      $(document).ready(function() {
-        const stateOptions = [
-          { value: "AL", label: "Alabama" },
-          { value: "AK", label: "Alaska" },
-          { value: "AZ", label: "Arizona" },
-          // ... Add all 50 states here
-        ];
+      const states = {
+    "Alabama": "AL",
+    "Alaska": "AK",
+    "Arizona": "AZ",
+    "Arkansas": "AR",
+    "California": "CA",
+    "Colorado": "CO",
+    "Connecticut": "CT",
+    "Delaware": "DE",
+    "Florida": "FL",
+    "Georgia": "GA",
+    "Hawaii": "HI",
+    "Idaho": "ID",
+    "Illinois": "IL",
+    "Indiana": "IN",
+    "Iowa": "IA",
+    "Kansas": "KS",
+    "Kentucky": "KY",
+    "Louisiana": "LA",
+    "Maine": "ME",
+    "Maryland": "MD",
+    "Massachusetts": "MA",
+    "Michigan": "MI",
+    "Minnesota": "MN",
+    "Mississippi": "MS",
+    "Missouri": "MO",
+    "Montana": "MT",
+    "Nebraska": "NE",
+    "Nevada": "NV",
+    "New Hampshire": "NH",
+    "New Jersey": "NJ",
+    "New Mexico": "NM",
+    "New York": "NY",
+    "North Carolina": "NC",
+    "North Dakota": "ND",
+    "Ohio": "OH",
+    "Oklahoma": "OK",
+    "Oregon": "OR",
+    "Pennsylvania": "PA",
+    "Rhode Island": "RI",
+    "South Carolina": "SC",
+    "South Dakota": "SD",
+    "Tennessee": "TN",
+    "Texas": "TX",
+    "Utah": "UT",
+    "Vermont": "VT",
+    "Virginia": "VA",
+    "Washington": "WA",
+    "West Virginia": "WV",
+    "Wisconsin": "WI",
+    "Wyoming": "WY"
+};
 
-        stateOptions.forEach(option => {
-          const optionElement = document.createElement('option');
-          optionElement.value = option.value;
-          optionElement.label = option.label;
-          $('#stateOptions').append(optionElement);
+
+      const stateInputElement = document.getElementById('state');
+      const stateOptionsElement = document.getElementById('stateOptions');
+
+      const showSuggestions = (currentInput) => {
+        stateOptionsElement.innerHTML = ''; // Clear previous options
+
+        const filteredStates = Object.entries(states).filter(([stateName, abbreviation]) => stateName.toLowerCase().startsWith(currentInput.toLowerCase()));
+
+        // Limit to first 4 results
+        const topFourResults = filteredStates.slice(0, 4);
+
+        topFourResults.forEach(([stateName, abbreviation]) => {
+          const optionElement = document.createElement('li');
+          optionElement.classList.add('list-group-item'); // Add Bootstrap class for styling
+          optionElement.innerText = stateName;
+
+          // Update state input value and hide dropdown on click
+          optionElement.addEventListener('click', () => {
+            stateInputElement.value = abbreviation;
+            stateOptionsElement.style.display = 'none';
+          });
+
+          // Hover effect
+          optionElement.addEventListener('mouseover', () => {
+            optionElement.classList.add('list-group-item-hover');
+          });
+
+          optionElement.addEventListener('mouseout', () => {
+            optionElement.classList.remove('list-group-item-hover');
+          });
+
+          stateOptionsElement.appendChild(optionElement);
         });
+
+        // Show/Hide the dropdown based on input length
+        if (currentInput.length > 0) {
+          stateOptionsElement.style.display = 'block';
+        } else {
+          stateOptionsElement.style.display = 'none';
+        }
+      };
+
+      stateInputElement.addEventListener('keyup', (event) => {
+        const currentInput = event.target.value;
+        showSuggestions(currentInput);
       });
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </div>
+  <div class="container" id="searchContent" style="display: none;">
+  </div>
+  <div class="container">
+    {% if colleges %}
+      <ul>
+        {% for college in colleges %}
+          <li>
+            <h3>
+              <a href="https://www.google.com/search?q={{ college.school.name }}" target="_blank">
+                {{ college.school.name }}
+              </a>
+            </h3>
+            <p>
+              {% if college.school.city and college.school.state %}
+                <span>Location: {{ college.school.city }}, {{ college.school.state }}</span><br>
+              {% endif %}
+              <b>In-State Tuition: $</b> {{ college.latest.cost.tuition.in_state }} |
+              <b>Out-of-State Tuition: $</b> {{ college.latest.cost.tuition.out_of_state }}
+            </p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No school found matching your search criteria.</p>
+    {% endif %}
+  </div>
+  <script>
+    $(document).ready(function() {
+        $("#searchButton").click(function() {
+            $("#searchContent").show();
+        });
+    });
+</script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

@@ -17,7 +17,7 @@ def college_search():
         degree_levels = request.form.get("degree_levels")
         try:
             colleges = CollegeSchoolFetcher("HRnr80yWE4NsBtYUorM2hHu1EAhRYIIRJpqZ7eDa").fetch_college_data(state, degree_levels)
-            return render_template("search_results.html", colleges=colleges)
+            return render_template("college_search.html", colleges=colleges)
         except Exception as e:
             print("Error fetching data:", e)
             return "Error fetching data", 500
