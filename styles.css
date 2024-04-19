@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+  }
+  
+  .left-image,
+  .right-image {
+    width: 50%;
+    height: 100vh; /* 100vh for full viewport height */
+    object-fit: cover; /* Maintain aspect ratio and cover the area */
+  }
+  
