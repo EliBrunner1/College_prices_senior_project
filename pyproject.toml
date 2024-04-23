@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "eli brunner senior project"
+version = "0.1.0"
+description = "college search website"
+authors = ["Eli <elibrunner2@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flask = "^3.0.3"
+pytest = "^8.1.1"
+pandas = "^2.2.2"
+matplotlib = "^3.8.4"
+requests = "^2.31.0"
+flask-sqlalchemy = "^3.1.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
