@@ -1,15 +1,22 @@
-from Flask_Setup import app 
 
-app.
+from API_Call import CollegeSchoolFetcher  # Replace with the actual module name
+import pytest
 
-def test_main_route():
-    # client = app.test_client()
-    # response = client.get('/')
-    app.run()
+@pytest.fixture
+def college_fetcher():
+    # Initialize the CollegeSchoolFetcher with your API key
+    api_key = "HRnr80yWE4NsBtYUorM2hHu1EAhRYIIRJpqZ7eDa"
+    return CollegeSchoolFetcher(api_key)
 
-    assert response.status_code == 200
+def test_fetch_college_data(college_fetcher):
+    # Test fetching college data
+    college_data = college_fetcher.fetch_college_data()
+    assert isinstance(college_data, list)
+    # Add more assertions based on the expected structure of the data
 
-    assert b'Main_Page.html' in response.data
+
+if __name__ == "__main__":
+    pytest.main()
 
 
 
