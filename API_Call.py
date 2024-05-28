@@ -1,10 +1,7 @@
-# For general python dataFrame manipulation, aggregations, and plots.
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-# For handling API calls. 
 from pprint import pprint
-# For user-friendly data file access.
 import os
 import requests
 from flask_sqlalchemy import SQLAlchemy
@@ -49,3 +46,4 @@ if __name__ == "__main__":
         print(f"In-State Tuition: ${instate_tuition}")
         print(f"Out-of-State Tuition: ${outstate_tuition}")
         print("-" * 30)
+        #5/28/24 done 
